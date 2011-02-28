@@ -10,12 +10,14 @@ x = 0
 while True:
     print x
     data = urllib.urlopen(url).read()
-    if not data.startswith('and the next nothing is'):
-        print data
-        print id
+    if data.find('and the next nothing is') == -1:
+        print data, id
         if data.endswith('.html'):
             break
+        elif data.startswith('Yes. Divide by two and keep going.'):
+            id = str(int(id)/2);
+    else:
+        id = data.split()[-1]
 
-    id = data.split()[-1]
     url = ori_url + id
     x = x + 1

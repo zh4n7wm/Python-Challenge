@@ -12,6 +12,7 @@ while True:
     data = urllib.urlopen(url).read()
     if not data.startswith('and the next nothing is'):
         print data
+        print id
         if data.endswith('.html'):
             break
 

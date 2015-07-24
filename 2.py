@@ -3,12 +3,10 @@
 
 import sys
 import string
-import requests
-import re
+from mylib import get_comment_from_src
 
 url = r'http://www.pythonchallenge.com/pc/def/ocr.html'
-data = requests.get(url).content
-s = re.findall('<!--([^>]+)-->', data)
+s = get_comment_from_src(url)
 if len(s) != 2:
     print 'web page source code changed??'
     sys.exit()

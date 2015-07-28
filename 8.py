@@ -1,12 +1,20 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
+# encoding: utf-8
+"""
+level 8: http://www.pythonchallenge.com/pc/def/integrity.html
+"""
 
+from __future__ import print_function
+from mylib import get_comment_from_src
+import re
 import bz2
 
-un_data = 'BZh91AY&SYA\xaf\x82\r\x00\x00\x01\x01\x80\x02\xc0\x02\x00 \x00!\x9ah3M\x07<]\xc9\x14\xe1BA\x06\xbe\x084'
-pw_data = 'BZh91AY&SY\x94$|\x0e\x00\x00\x00\x81\x00\x03$ \x00!\x9ah3M\x13<]\xc9\x14\xe1BBP\x91\xf08'
+url = 'http://www.pythonchallenge.com/pc/def/integrity.html'
+comment = get_comment_from_src(url)[0]
+un = re.findall("un: '([^']+)'", comment)[0]
+pw = re.findall("pw: '([^']+)'", comment)[0]
+#print(un)
+#print(pw)
 
-un = bz2.decompress(un_data)
-pw = bz2.decompress(pw_data)
-
-print 'un: %s\npw: %s' % (un, pw)
+print('username:', bz2.decompress(un.decode('string_escape')))
+print('password:', bz2.decompress(pw.decode('string_escape')))

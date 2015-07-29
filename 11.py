@@ -4,16 +4,13 @@
 # Ox0spy <Ox0spy@gmail.com>
 # http://www.pythonchallenge.com/pc/return/5808.html
 
-import Image
-import os, sys
+from PIL import Image
+from StringIO import StringIO
+import requests
 
-jpg_fname = 'cave.jpg'
-
-if not os.path.exists(jpg_fname):
-    print 'please download %s ...' % jpg_fname
-    sys.exit()
-
-img = Image.open(jpg_fname)
+img_url = 'http://www.pythonchallenge.com/pc/return/cave.jpg'
+fimg = StringIO(requests.get(img_url, auth=('huge', 'file')).content)
+img = Image.open(fimg)
 data = []
 for h in range(img.size[1]):
     for w in range(img.size[0]):

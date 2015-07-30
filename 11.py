@@ -7,9 +7,10 @@
 from PIL import Image
 from StringIO import StringIO
 import requests
+from mylib import USER, PASSWORD
 
 img_url = 'http://www.pythonchallenge.com/pc/return/cave.jpg'
-fimg = StringIO(requests.get(img_url, auth=('huge', 'file')).content)
+fimg = StringIO(requests.get(img_url, auth=(USER, PASSWORD)).content)
 img = Image.open(fimg)
 data = []
 for h in range(img.size[1]):

@@ -10,15 +10,14 @@ passwd: file
 from __future__ import print_function
 import requests
 from requests.auth import HTTPBasicAuth
+from mylib import USER, PASSWORD
 import re
 from PIL import Image
 from PIL import ImageDraw
 
 
 url = 'http://www.pythonchallenge.com/pc/return/good.html'
-user = 'huge'
-passwd = 'file'
-data = requests.get(url, auth=HTTPBasicAuth(user, passwd)).content
+data = requests.get(url, auth=HTTPBasicAuth(USER, PASSWORD)).content
 comment = re.findall('<!--([^-]+)-->', data)[1]
 first = re.findall('first:\n([\d,\n]+)\n', comment)[0].replace('\n', '').split(',')
 second = re.findall('second:\n([\d,\n]+)\n', comment)[0].replace('\n', '').split(',')

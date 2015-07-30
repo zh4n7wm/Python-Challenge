@@ -7,9 +7,10 @@ level 11: http://www.pythonchallenge.com/pc/return/5808.html
 from StringIO import StringIO
 from PIL import Image
 import requests
+from mylib import USER, PASSWORD
 
 img_url = 'http://www.pythonchallenge.com/pc/return/cave.jpg'
-fimg = StringIO(requests.get(img_url, auth=('huge', 'file')).content)
+fimg = StringIO(requests.get(img_url, auth=(USER, PASSWORD)).content)
 im = Image.open(fimg)
 data = list(im.getdata())
 even = data[::2]
